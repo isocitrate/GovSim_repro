@@ -1,0 +1,82 @@
+[
+  {
+    "feature": "pickup_borough=N/A",
+    "coefficient": -1.2230613715973957,
+    "abs_coefficient": 1.2230613715973957
+  },
+  {
+    "feature": "pickup_borough=EWR",
+    "coefficient": -1.1450564097840672,
+    "abs_coefficient": 1.1450564097840672
+  },
+  {
+    "feature": "pickup_hour",
+    "coefficient": 0.8688930467098487,
+    "abs_coefficient": 0.8688930467098487
+  },
+  {
+    "feature": "pickup_borough=Queens",
+    "coefficient": -0.4580164935699226,
+    "abs_coefficient": 0.4580164935699226
+  },
+  {
+    "feature": "pickup_borough=Bronx",
+    "coefficient": -0.402679766507497,
+    "abs_coefficient": 0.402679766507497
+  },
+  {
+    "feature": "airport_trip",
+    "coefficient": -0.2806285503988996,
+    "abs_coefficient": 0.2806285503988996
+  },
+  {
+    "feature": "pickup_borough=Manhattan",
+    "coefficient": 0.24354241986267233,
+    "abs_coefficient": 0.24354241986267233
+  },
+  {
+    "feature": "pickup_borough=Unknown",
+    "coefficient": 0.1954108769257057,
+    "abs_coefficient": 0.1954108769257057
+  },
+  {
+    "feature": "passenger_count",
+    "coefficient": -0.1608808705121339,
+    "abs_coefficient": 0.1608808705121339
+  },
+  {
+    "feature": "fare_per_mile",
+    "coefficient": 0.14706328169163155,
+    "abs_coefficient": 0.14706328169163155
+  },
+  {
+    "feature": "pickup_borough=Brooklyn",
+    "coefficient": 0.13182697594058557,
+    "abs_coefficient": 0.13182697594058557
+  },
+  {
+    "feature": "fare_amount",
+    "coefficient": -0.026587053845936636,
+    "abs_coefficient": 0.026587053845936636
+  },
+  {
+    "feature": "trip_distance_bucket",
+    "coefficient": -0.0246216441739893,
+    "abs_coefficient": 0.0246216441739893
+  },
+  {
+    "feature": "trip_duration_min",
+    "coefficient": -0.006728345264927435,
+    "abs_coefficient": 0.006728345264927435
+  },
+  {
+    "feature": "is_weekend",
+    "coefficient": 0.006387343316158301,
+    "abs_coefficient": 0.006387343316158301
+  },
+  {
+    "feature": "same_borough",
+    "coefficient": 0.0,
+    "abs_coefficient": 0.0
+  }
+]

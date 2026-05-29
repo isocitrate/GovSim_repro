@@ -1,0 +1,5 @@
+defaults:
+  - fish_baseline_concurrent
+
+env:
+  name: fish_free_communication

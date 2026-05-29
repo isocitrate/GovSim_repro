@@ -1,0 +1,10 @@
+Assignment 3 Q2b summary
+Pipeline stages:
+- stage_0: StringIndexer
+- stage_1: OneHotEncoder
+- stage_2: Bucketizer
+- stage_3: VectorAssembler
+- stage_4: LinearRegression
+
+This pipeline can be passed directly into a Spark CrossValidator.
+Single-fit RMSE with fixed params (regParam=0.01, elasticNetParam=0.0): 1.9132260535293717

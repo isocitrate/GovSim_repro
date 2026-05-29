@@ -1,0 +1,24 @@
+Assignment 3 Q3 summary
+CV training subset fraction: 0.15
+RMSE: 2.066909215897215
+Best regParam: 0.02
+Best elasticNetParam: 0.0
+Intercept: 0.9844730018399555
+Coefficients (sorted by absolute value):
+  pickup_borough=EWR: 5.14985547523752
+  pickup_borough=Staten Island: 3.2915175404429604
+  pickup_borough=N/A: 2.8135945565068203
+  pickup_hour: 1.8431313747812066
+  airport_trip: -1.129075432503688
+  pickup_borough=Bronx: -0.7694262399011121
+  pickup_borough=Queens: -0.5909754599582061
+  pickup_borough=Manhattan: 0.31198195054750194
+  pickup_borough=Unknown: 0.2965294344563549
+  pickup_borough=Brooklyn: 0.052758799801398894
+  fare_amount: -0.03969058900451414
+  trip_distance_bucket: 0.03811788912089393
+  passenger_count: -0.019871340288062596
+  trip_duration_min: 0.01766232367100625
+  is_weekend: 0.010739771188757763
+  fare_per_mile: 0.005061564644364539
+  same_borough: 0.0

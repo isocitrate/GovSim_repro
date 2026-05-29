@@ -1,0 +1,5 @@
+defaults:
+  - fish_perturbation_no_language
+
+env:
+  name: fish_no_communication

@@ -1,0 +1,16 @@
+defaults:
+  - fish_baseline_concurrent
+
+env:
+  name: fish_costly_punishment
+  enable_punishment: true
+  punishment:
+    cost_per_point: 1
+    penalty_multiplier: 3
+    max_points_per_target: 10
+
+agent:
+  punishment:
+    cost_per_point: ${experiment.env.punishment.cost_per_point}
+    penalty_multiplier: ${experiment.env.punishment.penalty_multiplier}
+    max_points_per_target: ${experiment.env.punishment.max_points_per_target}

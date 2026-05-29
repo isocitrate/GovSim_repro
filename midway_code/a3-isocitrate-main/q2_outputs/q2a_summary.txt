@@ -1,0 +1,28 @@
+Assignment 3 Q2a summary
+Engineered features:
+- pickup_borough: Categorical geography feature capturing broad pickup context.
+- same_borough: Spatial binary indicating whether pickup and dropoff occur in the same borough.
+- airport_trip: Spatial binary for airport-linked rides.
+- pickup_hour: Datetime feature capturing hourly variations in travel/traffic.
+- is_weekend: Datetime binary distinguishing weekdays and weekends.
+- passenger_count: Integer capturing party size and potentially different tipping norms.
+- fare_amount: Float capturing trip price (sans the tip).
+- fare_per_mile: Float capturing general pricing intensity.
+- trip_duration_min: Float proxying congestion and trip burden.
+- trip_distance_bucket: Categorical bucketized trip distance to capture potential nonlinear thresholds.
+
+Final modeling schema:
+root
+ |-- pickup_borough: string (nullable = true)
+ |-- same_borough: integer (nullable = false)
+ |-- airport_trip: integer (nullable = false)
+ |-- pickup_hour: integer (nullable = true)
+ |-- is_weekend: integer (nullable = false)
+ |-- passenger_count: long (nullable = true)
+ |-- fare_amount: double (nullable = true)
+ |-- fare_per_mile: double (nullable = true)
+ |-- trip_duration_min: double (nullable = true)
+ |-- trip_distance: double (nullable = true)
+ |-- tip_amount: double (nullable = true)
+
+Row count after cleaning: 144778932

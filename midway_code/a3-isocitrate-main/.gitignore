@@ -1,0 +1,6 @@
+__pycache__/
+  *.pyc
+  q2_outputs/model_df.parquet/
+  q2_outputs/*.parquet
+  slurm-*.out
+  

@@ -1,0 +1,35 @@
+Midway GovSim preflight
+python: /home/justinchen/.conda/envs/GovComVLLMv2/bin/python
+python_version: 3.11.5
+cwd: /home/justinchen/GovSim_repro
+hostname: midway3-0001.rcc.local
+slurm_job_id: 50252956
+slurm_array_task_id: 
+cuda_visible_devices: 
+hf_home: 
+wandb_mode: disabled
+
+Executables
+python: /home/justinchen/.conda/envs/GovComVLLMv2/bin/python
+python3: /home/justinchen/.conda/envs/GovComVLLMv2/bin/python3
+nvidia-smi: missing
+
+Python modules
+hydra: ok
+omegaconf: ok
+numpy: ok
+pandas: ok
+pettingzoo: ok
+torch: ok
+transformers: ok
+wandb: ok
+vllm: ok
+sentence_transformers: ok
+
+GPU
+unavailable: [Errno 2] No such file or directory: 'nvidia-smi'
+torch_version: 2.5.1+cu124
+torch_cuda_available: False
+torch_cuda_device_count: 0
+
+Preflight passed

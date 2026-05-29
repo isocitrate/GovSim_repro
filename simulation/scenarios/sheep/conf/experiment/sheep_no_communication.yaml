@@ -1,0 +1,5 @@
+defaults:
+  - sheep_perturbation_no_language
+
+env:
+  name: sheep_no_communication
