@@ -13,6 +13,7 @@ from transformers import (
     MaxLengthCriteria,
     PreTrainedModel,
     PreTrainedTokenizer,
+    PreTrainedTokenizerBase,
     StoppingCriteria,
     StoppingCriteriaList,
     pipeline,
@@ -24,6 +25,12 @@ from ._gen import Gen
 from ._select import Select
 from .backend import PathFinder
 from .trie import MarisaTrie, Trie
+
+
+if not hasattr(PreTrainedTokenizerBase, "all_special_tokens_extended"):
+    PreTrainedTokenizerBase.all_special_tokens_extended = property(
+        lambda self: self.all_special_tokens
+    )
 
 
 def can_be_int(s):
