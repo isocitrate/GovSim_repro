@@ -1,3 +1,5 @@
+import os
+
 import torch
 from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
@@ -118,7 +120,8 @@ def get_model(name, is_api=False, seed=42, backend_name="transformers"):
 
             model = exllama_set_max_input_length(model, max_input_length=4096)
 
-        model = torch.compile(model)
+        if os.environ.get("PATHFINDER_DISABLE_TORCH_COMPILE") != "1":
+            model = torch.compile(model)
         backend = Model(
             model=model,
             tokenizer=tokenizer,

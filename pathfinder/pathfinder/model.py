@@ -80,6 +80,7 @@ class Model(PathFinder):
         self.tokenizer = tokenizer
 
         self.trust_remote_code = trust_remote_code
+        self.generation_config = copy.deepcopy(model.generation_config)
 
     def _current_prompt(self):
         if isinstance(self.chat, list):
@@ -121,10 +122,7 @@ class Model(PathFinder):
     def _get_gen(self, value: Gen):
         prompt_render, input_ids = self._format_prompt()
 
-        generation_config = GenerationConfig.from_pretrained(
-            self.model.name_or_path,
-            trust_remote_code=self.trust_remote_code,
-        )
+        generation_config = copy.deepcopy(self.generation_config)
 
         pad_token_id = generation_config.pad_token_id
         eos_token_id = generation_config.eos_token_id
@@ -202,10 +200,7 @@ class Model(PathFinder):
 
     def _get_find(self, value: Find):
         prompt_render, input_ids = self._format_prompt()
-        generation_config = GenerationConfig.from_pretrained(
-            self.model.name_or_path,
-            trust_remote_code=self.trust_remote_code,
-        )
+        generation_config = copy.deepcopy(self.generation_config)
 
         pad_token_id = generation_config.pad_token_id
         eos_token_id = generation_config.eos_token_id
