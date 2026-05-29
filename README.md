@@ -12,6 +12,7 @@ The full experiment matrix is:
 
 For initial Midway runs, use the overnight pilot spec first:
 
+- `quick`: 1 fishery seed with Qwen across the three institutions, 3 total trials.
 - `smoke`: 1 seed per combination, 18 total trials.
 - `pilot`: 3 seeds per combination, 54 total trials. This is the default.
 - `full`: 20 seeds per combination, 360 total trials.
@@ -47,6 +48,7 @@ GOVSIM_TEST_INDEX=12 sbatch scripts/midway_govsim_test.sbatch
 After the test job succeeds, submit the smoke job, then the overnight pilot:
 
 ```bash
+sbatch scripts/midway_govsim_quick.sbatch
 sbatch scripts/midway_govsim_smoke.sbatch
 sbatch scripts/midway_govsim_pilot.sbatch
 ```

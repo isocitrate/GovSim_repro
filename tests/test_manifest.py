@@ -17,3 +17,23 @@ def test_pilot_preset_has_54_trials():
     manifest = list(rows(num_trials=PRESETS["pilot"], backend="vllm"))
 
     assert len(manifest) == 54
+
+
+def test_filtered_quick_manifest_has_three_trials():
+    manifest = list(
+        rows(
+            num_trials=PRESETS["quick"],
+            backend="vllm",
+            games=["fishing"],
+            institutions=[
+                "no_communication",
+                "free_communication",
+                "costly_punishment",
+            ],
+            models=["qwen2_5_7b"],
+        )
+    )
+
+    assert len(manifest) == 3
+    assert {row["model_id"] for row in manifest} == {"qwen2_5_7b"}
+    assert {row["game"] for row in manifest} == {"fishing"}
