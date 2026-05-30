@@ -81,6 +81,24 @@ python scripts/analyze_results.py \
 cat analysis_outputs/current_summary.csv
 ```
 
+## Successful Preliminary Midway Jobs
+
+The following Slurm jobs produced successful preliminary outputs during the
+May 29, 2026 Midway run:
+
+| Job ID | Partition | Job | Result |
+|---:|---|---|---|
+| `50252956` | `caslake` | CPU preflight | Passed dependency/import preflight without GPU |
+| `50254559` | `ssd-gpu` | `govsim_one_tf` | Fishery, no communication, Qwen 2.5 7B, completed |
+| `50257383` | `ssd-gpu` | `fish_free_c1` | Fishery, free communication, 3 rounds / 1 conversation step, completed |
+| `50257667` | `ssd-gpu` | `sheep_no_3r` | Pasture, no communication, 3 rounds, completed |
+
+Several exploratory jobs also ran but timed out or failed before producing
+`log_env.json`, including vLLM attempts, fishery costly punishment, and pasture
+free communication under the Transformers backend. These failures motivate the
+next engineering step: faster inference, better progress logging, and a cheaper
+punishment decision path.
+
 ## Implemented Experiment IDs
 
 - `fish_no_communication`, `fish_free_communication`, `fish_costly_punishment`
