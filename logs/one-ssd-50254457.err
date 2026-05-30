@@ -1,0 +1,76 @@
+/software/python-anaconda-2022.05-el8-x86_64/lib/python3.9/site-packages/conda/base/context.py:201: FutureWarning: Adding 'defaults' to channel list implicitly is deprecated and will be removed in 25.3. 
+
+To remove this warning, please choose a default channel explicitly with conda's regular configuration system, e.g. by adding 'defaults' to the list of channels:
+
+  conda config --add channels defaults
+
+For more information see https://docs.conda.io/projects/conda/en/stable/user-guide/configuration/use-condarc.html
+
+  deprecated.topic(
+/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/wandb/sdk/launch/builder/build.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/home/justinchen/GovSim_repro/simulation/main.py:166: UserWarning: register_resolver() is deprecated.
+See https://github.com/omry/omegaconf/issues/426 for migration instructions.
+
+  OmegaConf.register_resolver("uuid", lambda: f"run_{uuid.uuid4()}")
+/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Error executing job with overrides: ['experiment=fish_no_communication', 'llm.path=Qwen/Qwen2.5-7B-Instruct', 'llm.backend=vllm', 'llm.is_api=false', 'seed=10000', 'group_name=fishing/no_communication/qwen2_5_7b', 'output_run_name=trial_0_seed_10000', 'debug=true']
+Traceback (most recent call last):
+  File "/home/justinchen/GovSim_repro/simulation/main.py", line 35, in main
+    model = get_model(cfg.llm.path, cfg.llm.is_api, cfg.seed, cfg.llm.backend)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/GovSim_repro/pathfinder/pathfinder/loader.py", line 131, in get_model
+    backend = ModelVLLMBackend(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/GovSim_repro/pathfinder/pathfinder/vllm.py", line 48, in __init__
+    self.model = LLM(
+                 ^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/utils.py", line 1027, in inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/entrypoints/llm.py", line 210, in __init__
+    self.llm_engine = self.engine_class.from_engine_args(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/engine/llm_engine.py", line 585, in from_engine_args
+    engine = cls(
+             ^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/engine/llm_engine.py", line 320, in __init__
+    self.tokenizer = self._init_tokenizer()
+                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/engine/llm_engine.py", line 629, in _init_tokenizer
+    return init_tokenizer_from_configs(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/transformers_utils/tokenizer_group/__init__.py", line 33, in init_tokenizer_from_configs
+    return get_tokenizer_group(parallel_config.tokenizer_pool_config,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/transformers_utils/tokenizer_group/__init__.py", line 54, in get_tokenizer_group
+    return tokenizer_cls.from_config(tokenizer_pool_config, **init_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/transformers_utils/tokenizer_group/tokenizer_group.py", line 30, in from_config
+    return cls(**init_kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/transformers_utils/tokenizer_group/tokenizer_group.py", line 23, in __init__
+    self.tokenizer = get_tokenizer(self.tokenizer_id, **tokenizer_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/transformers_utils/tokenizer.py", line 177, in get_tokenizer
+    tokenizer = get_cached_tokenizer(tokenizer)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/vllm/transformers_utils/tokenizer.py", line 35, in get_cached_tokenizer
+    tokenizer.all_special_tokens_extended)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 1315, in __getattr__
+    raise AttributeError(f"{self.__class__.__name__} has no attribute {key}")
+AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+Traceback (most recent call last):
+  File "/home/justinchen/GovSim_repro/scripts/run_manifest.py", line 98, in <module>
+    main()
+  File "/home/justinchen/GovSim_repro/scripts/run_manifest.py", line 94, in main
+    subprocess.run(cmd, check=True, cwd=root)
+  File "/home/justinchen/.conda/envs/GovComVLLMv2/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/justinchen/.conda/envs/GovComVLLMv2/bin/python', '-m', 'simulation.main', 'experiment=fish_no_communication', 'llm.path=Qwen/Qwen2.5-7B-Instruct', 'llm.backend=vllm', 'llm.is_api=false', 'seed=10000', 'group_name=fishing/no_communication/qwen2_5_7b', 'output_run_name=trial_0_seed_10000', 'debug=true']' returned non-zero exit status 1.

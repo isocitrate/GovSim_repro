@@ -1,0 +1,8 @@
+- experiment=fish_costly_punishment
+- llm.path=Qwen/Qwen2.5-7B-Instruct
+- llm.backend=transformers
+- llm.is_api=false
+- seed=10000
+- group_name=fishing/costly_punishment/qwen2_5_7b
+- output_run_name=trial_0_seed_10000
+- debug=true

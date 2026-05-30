@@ -1,0 +1,4 @@
+game,institution,experiment,model_id,model_path,backend,seed,trial,group_name
+fishing,no_communication,fish_no_communication,qwen2_5_7b,Qwen/Qwen2.5-7B-Instruct,vllm,10000,0,fishing/no_communication/qwen2_5_7b
+fishing,free_communication,fish_free_communication,qwen2_5_7b,Qwen/Qwen2.5-7B-Instruct,vllm,10000,0,fishing/free_communication/qwen2_5_7b
+fishing,costly_punishment,fish_costly_punishment,qwen2_5_7b,Qwen/Qwen2.5-7B-Instruct,vllm,10000,0,fishing/costly_punishment/qwen2_5_7b

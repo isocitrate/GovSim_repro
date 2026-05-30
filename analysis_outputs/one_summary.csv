@@ -1,0 +1,2 @@
+experiment,scenario,model_path,seed,group_name,run_path,rounds_survived,final_resource,gross_social_welfare,net_social_welfare,gross_gini,net_gini,punishment_points,punishment_cost,punishment_penalty,overuse_actions
+fish_no_communication,fishing,Qwen/Qwen2.5-7B-Instruct,10000,fishing/no_communication/qwen2_5_7b,simulation/results/fishing_v7.0/fishing/no_communication/qwen2_5_7b/trial_0_seed_10000,1,0.0,100.0,100.0,0.14,0.14,0.0,0.0,0.0,4

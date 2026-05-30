@@ -1,0 +1,2 @@
+[2026-05-29 20:25:50,181][sentence_transformers.base.model][INFO] - Loading SentenceTransformer model from mixedbread-ai/mxbai-embed-large-v1.
+[2026-05-29 20:25:50,657][sentence_transformers.base.model][INFO] - Loaded 1 prompt with these keys: ['query']

@@ -1,0 +1,87 @@
+Wrote 3 trials to manifests/govsim_quick_transformers.csv
+experiment:
+  personas:
+    persona_0:
+      name: John
+      goals: ''
+    persona_1:
+      name: Kate
+      goals: ''
+    persona_2:
+      name: Jack
+      goals: ''
+    persona_3:
+      name: Emma
+      goals: ''
+    persona_4:
+      name: Luke
+      goals: ''
+    num: 5
+  name: fishing_${code_version}/${group_name}
+  scenario: fishing
+  env:
+    name: fish_free_communication
+    class_name: fishing_perturbation_concurrent_env
+    max_num_rounds: 12
+    initial_resource_in_pool: 100
+    poupulation_change_after_round: double_100_cap
+    observation_other_agents_harvesting: true
+    language_nature: unconstrained
+    num_agents: 5
+    harvesting_order: concurrent
+    assign_resource_strategy: stochastic
+    inject_universalization: false
+    inject_scenario_dynamic: false
+    perturbations: []
+  agent:
+    agent_package: persona_v3
+    system_prompt: v3
+    cot_prompt: think_step_by_step
+    act:
+      universalization_prompt: false
+      harvest_strategy: one_step
+      consider_identity_persona: true
+    converse:
+      inject_resource_observation: ${experiment.env.observation_other_agents_harvesting}
+      inject_resource_observation_strategy: manager
+      max_conversation_steps: 10
+      prompt_utterance: one_shot
+    store:
+      expiration_delta:
+        days: 63
+code_version: v7.0
+group_name: fishing/free_communication/qwen2_5_7b
+output_run_name: trial_0_seed_10000
+llm:
+  path: Qwen/Qwen2.5-7B-Instruct
+  backend: transformers
+  is_api: false
+  render: false
+  temperature: 0.0
+  top_p: 1.0
+mix_llm: []
+seed: 10000
+debug: true
+
+Storage name: dummy-x0pa23dx-x0pa23dx
+[2026-05-29 17:13:46,705][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-05-29 17:13:46,715][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-05-29 17:13:46,766][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-05-29 17:13:46,778][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-05-29 17:13:46,828][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+[2026-05-29 17:13:46,867][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-05-29 17:13:47,252][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+[2026-05-29 17:13:47,290][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-05-29 17:13:47,291][huggingface_hub.utils._http][WARNING] - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-05-29 17:13:47,299][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-05-29 17:13:47,340][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-05-29 17:13:47,349][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-05-29 17:13:47,408][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/revision/main "HTTP/1.1 200 OK"
+[2026-05-29 17:13:48,115][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00001-of-00004.safetensors "HTTP/1.1 302 Found"
+[2026-05-29 17:13:48,118][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00002-of-00004.safetensors "HTTP/1.1 302 Found"
+[2026-05-29 17:13:48,121][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/a09a35458c702b33eeacc393d103063234e8bc28/model-00004-of-00004.safetensors "HTTP/1.1 302 Found"
+[2026-05-29 17:13:59,341][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/xet-read-token/a09a35458c702b33eeacc393d103063234e8bc28 "HTTP/1.1 200 OK"
+Trial 1: /home/justinchen/.conda/envs/GovComVLLMv2/bin/python -m simulation.main experiment=fish_free_communication llm.path=Qwen/Qwen2.5-7B-Instruct llm.backend=transformers llm.is_api=false seed=10000 group_name=fishing/free_communication/qwen2_5_7b output_run_name=trial_0_seed_10000 debug=true
+Manifest: /home/justinchen/GovSim_repro/manifests/govsim_quick_transformers.csv
+Expected output: /home/justinchen/GovSim_repro/simulation/results/fishing_v7.0/fishing/free_communication/qwen2_5_7b/trial_0_seed_10000
+CUDA_VISIBLE_DEVICES=0
