@@ -3,67 +3,85 @@
 This repository vendors and extends GovSim to reproduce Piatti et al. (2024) and
 add a costly-punishment institution inspired by Fehr and Gachter (2000).
 
-The full experiment matrix is:
+## Current Preliminary Workflow
+
+The current working setup prioritizes getting preliminary results across the
+core design dimensions:
 
 - Games: fishery and pasture common good.
 - Institutions: no communication, free communication, costly punishment.
-- Models: Llama 3.1 8B Instruct, Qwen 2.5 7B Instruct, Mistral 7B Instruct.
-- Trials: 20 seeds per game/institution/model combination, 360 total trials.
+- Model: Qwen 2.5 7B Instruct.
+- Trials: one seed per game/institution combination.
 
-For initial Midway runs, use the overnight pilot spec first:
+This gives a 6-trial preliminary matrix:
 
-- `quick`: 1 fishery seed with Qwen across the three institutions, 3 total trials.
-- `smoke`: 1 seed per combination, 18 total trials.
-- `pilot`: 3 seeds per combination, 54 total trials. This is the default.
-- `full`: 20 seeds per combination, 360 total trials.
-
-The extension keeps upstream GovSim's local-inference workflow and adds
-Midway-friendly utilities:
-
-```bash
-python scripts/generate_manifest.py --preset pilot
-python scripts/run_manifest.py --manifest manifests/govsim_pilot.csv --index 0 --dry-run
-python scripts/analyze_results.py --results-root simulation/results
+```text
+2 games x 3 institutions x 1 model x 1 seed = 6 trials
 ```
 
-On Midway, submit a preflight job first:
+For reliability on Midway, the current execution path uses:
+
+- `ssd-gpu` with account/QoS `ssd-stu`
+- Transformers backend rather than vLLM
+- Hugging Face cache on `/scratch/midway3/$USER/huggingface`
+- Slurm logs on `/scratch/midway3/$USER/govsim_logs`
+- W&B disabled mode
+- deterministic output paths under `simulation/results`
+
+The shared `gpu` partition remains supported, but it had long `Priority` queue
+delays during the preliminary run. vLLM remains a long-run target, but the
+available Midway software stack crashed during vLLM model loading, so
+Transformers is the current fallback.
+
+## Preliminary Commands
+
+Generate and run the one-seed fishery quick manifest:
 
 ```bash
-sbatch scripts/midway_govsim_preflight.sbatch
+python scripts/generate_manifest.py \
+  --preset quick \
+  --backend transformers \
+  --output manifests/govsim_quick_transformers.csv
 ```
 
-Then submit a one-trial test:
+Run one manifest row on `ssd-gpu`:
 
 ```bash
-sbatch scripts/midway_govsim_test.sbatch
+export HF_HOME=/scratch/midway3/$USER/huggingface
+export TRANSFORMERS_CACHE=/scratch/midway3/$USER/huggingface/transformers
+export HF_HUB_DISABLE_XET=1
+export GOVSIM_TEST_INDEX=0
+
+sbatch --account=ssd-stu --qos=ssd-stu --partition=ssd-gpu \
+  scripts/midway_govsim_one_transformers.sbatch
 ```
 
-By default this runs trial index `0` from a one-seed smoke manifest. To test a
-different row without editing the script:
+For capped 3-round preliminary communication/punishment runs, use direct Hydra
+overrides such as:
 
 ```bash
-GOVSIM_TEST_INDEX=12 sbatch scripts/midway_govsim_test.sbatch
+python -m simulation.main \
+  experiment=fish_free_communication \
+  llm.path=Qwen/Qwen2.5-7B-Instruct \
+  llm.backend=transformers \
+  llm.is_api=false \
+  seed=10000 \
+  group_name=fishing/free_communication/qwen2_5_7b_3round \
+  output_run_name=trial_0_seed_10000 \
+  experiment.env.max_num_rounds=3 \
+  debug=true
 ```
 
-After the test job succeeds, submit the smoke job, then the overnight pilot:
+Summarize all completed runs:
 
 ```bash
-sbatch scripts/midway_govsim_quick.sbatch
-sbatch scripts/midway_govsim_smoke.sbatch
-sbatch scripts/midway_govsim_pilot.sbatch
+python scripts/analyze_results.py \
+  --results-root simulation/results \
+  --output analysis_outputs/current_summary.csv
+cat analysis_outputs/current_summary.csv
 ```
 
-The Slurm scripts default to account `macs30123` and conda environment
-`GovComVLLMv2`; edit the `#SBATCH --account` line or set
-`GOVSIM_CONDA_ENV=<env-name>` if needed.
-
-To scale up after the pilot:
-
-```bash
-python scripts/generate_manifest.py --preset full --output manifests/govsim_360.csv
-```
-
-The new experiment ids are:
+## Implemented Experiment IDs
 
 - `fish_no_communication`, `fish_free_communication`, `fish_costly_punishment`
 - `sheep_no_communication`, `sheep_free_communication`, `sheep_costly_punishment`
@@ -71,6 +89,52 @@ The new experiment ids are:
 Costly punishment is configured per experiment under `experiment.env.punishment`.
 By default, one punishment point costs the punisher 1 payoff unit and reduces the
 target's payoff by 3 payoff units, with a maximum of 10 points per target.
+
+## HPC Design
+
+The HPC strategy is trial-level embarrassingly parallel execution. Each trial is
+independent, so manifests map game/institution/model/seed rows to Slurm tasks.
+
+Available manifest presets:
+
+- `quick`: 1 fishery seed with Qwen across the three institutions, 3 total trials.
+- `smoke`: 1 seed per combination, 18 total trials.
+- `pilot`: 3 seeds per combination, 54 total trials. This is the default.
+- `full`: 20 seeds per combination, 360 total trials.
+
+Utilities:
+
+```bash
+python scripts/generate_manifest.py --preset pilot
+python scripts/run_manifest.py --manifest manifests/govsim_pilot.csv --index 0 --dry-run
+python scripts/analyze_results.py --results-root simulation/results
+```
+
+The original Slurm scripts for shared `gpu` are still present:
+
+```bash
+sbatch scripts/midway_govsim_preflight.sbatch
+sbatch scripts/midway_govsim_test.sbatch
+sbatch scripts/midway_govsim_quick.sbatch
+sbatch scripts/midway_govsim_smoke.sbatch
+sbatch scripts/midway_govsim_pilot.sbatch
+```
+
+These shared-GPU scripts default to account `macs30123` and conda environment
+`GovComVLLMv2`.
+
+## Next Steps
+
+- Complete the 6-trial preliminary matrix across both games and all institutions.
+- Use capped 3-round runs for fast preliminary communication/punishment results.
+- Debug or replace the vLLM backend so long runs do not rely on slow Transformers generation.
+- Expand to the planned pilot: 54 trials.
+- Expand to the full experiment matrix:
+  - Games: fishery and pasture common good.
+  - Institutions: no communication, free communication, costly punishment.
+  - Models: Llama 3.1 8B Instruct, Qwen 2.5 7B Instruct, Mistral 7B Instruct.
+  - Trials: 20 seeds per game/institution/model combination.
+  - Total: `2 x 3 x 3 x 20 = 360` trials.
 
 ## Upstream GovSim README
 
