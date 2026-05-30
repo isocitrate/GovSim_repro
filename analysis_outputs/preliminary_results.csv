@@ -1,0 +1,4 @@
+experiment,scenario,model_path,seed,group_name,run_path,rounds_survived,final_resource,gross_social_welfare,net_social_welfare,gross_gini,net_gini,punishment_points,punishment_cost,punishment_penalty,overuse_actions
+sheep_no_communication,sheep,Qwen/Qwen2.5-7B-Instruct,10000,sheep/no_communication/qwen2_5_7b_3round,simulation/results/sheep_v7.0/sheep/no_communication/qwen2_5_7b_3round/trial_0_seed_10000,1,0.0,100.0,100.0,0.044,0.044,0.0,0.0,0.0,5
+fish_free_communication,fishing,Qwen/Qwen2.5-7B-Instruct,10000,fishing/free_communication/qwen2_5_7b_3round_c1,simulation/results/fishing_v7.0/fishing/free_communication/qwen2_5_7b_3round_c1/trial_0_seed_10000,1,0.0,100.0,100.0,0.204,0.204,0.0,0.0,0.0,4
+fish_no_communication,fishing,Qwen/Qwen2.5-7B-Instruct,10000,fishing/no_communication/qwen2_5_7b,simulation/results/fishing_v7.0/fishing/no_communication/qwen2_5_7b/trial_0_seed_10000,1,0.0,100.0,100.0,0.14,0.14,0.0,0.0,0.0,4

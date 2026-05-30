@@ -1,0 +1,7 @@
+scenario,institution,status,note
+fishing,no_communication,completed,12-round baseline completed
+fishing,free_communication,completed,3 rounds with 1 conversation step
+fishing,costly_punishment,timed_out,1-round and 3-round attempts did not produce log_env.json under Transformers
+sheep,no_communication,completed,3-round baseline completed
+sheep,free_communication,running,1-round long run submitted after shorter attempts timed out
+sheep,costly_punishment,not_run,deferred after punishment bottleneck in fishing
